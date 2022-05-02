@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paypal Pruebita</title>
+</head>
+<body>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ad6cV8x0d2W9Q9ZuQZW6J42Q5xOFSoBcd36apfk-Jc5ws9mwi6eUsWNADx7wsA_q6TSKrveNdfXaghJf"></script>
+    <div id="paypal-button-container"></div>
+   <input type="number" id="valor">
+    <script>
+
+      const inputValor = document.getElementById("valor")
+
+      inputValor.addEventListener("change", () => {
+        const valor = inputValor.value
+        pago(valor)
+      })
+
+     function pago(valor){
+        console.log(valor)
+        paypal.Buttons({
+          createOrder: function(data, actions) {
+            // Set up the transaction
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: valor
+                }
+              }]
+            });
+          }
+        }).render('#paypal-button-container');
+
+     }
+
+        
+      </script>
+   
+</body>
+</html>
